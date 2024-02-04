@@ -4,7 +4,7 @@ import SearchBar from './components/SearchBar';
 
 function App() {
   return (
-    <div>
+    <div className="h-screen scale-down">
       <Banner />
       <SearchBar />
     </div>
