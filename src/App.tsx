@@ -1,9 +1,12 @@
 // import { useState } from 'react';
+import Banner from './components/Banner';
+import SearchBar from './components/SearchBar';
 
 function App() {
   return (
     <div>
-      <button>Play-This</button>
+      <Banner />
+      <SearchBar />
     </div>
   );
 }
