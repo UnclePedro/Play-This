@@ -24,7 +24,7 @@ const SearchResults = () => {
                 <button>
                   <li
                     key={song.songName}
-                    className="py-3 w-72 bg-pink-700 my-4 flex flex-row space-x-10 p-4 hover:bg-violet-600 rounded-xl shadow-lg transition-all duration-300"
+                    className="py-3 w-72 bg-pink-700 my-2 flex flex-row space-x-10 p-4 hover:bg-violet-600 rounded-xl shadow-lg transition-all duration-300"
                   >
                     <div className="text-left">
                       <h3 className="font-bold text-lg">{song.songName}</h3>
