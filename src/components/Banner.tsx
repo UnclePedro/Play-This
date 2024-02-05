@@ -1,8 +1,9 @@
 const Banner = () => {
   return (
     <>
-      <div className="flex justify-center items-center bg-rose-900 text-white p-4">
-        <h1 className="text-5xl font-oxygen font-bold">Play-This ▶️</h1>
+      <div className="flex flex-col justify-center items-center text-white p-8">
+        <h1 className="text-5xl font-oxygen font-bold p-3">Play-This ▶️</h1>
+        <p className="flex text-center">Curate a playlist of your favourite tunes for your Spotify!</p>
       </div>
     </>
   );
