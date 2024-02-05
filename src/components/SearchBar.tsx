@@ -6,9 +6,9 @@ const SearchBar = () => {
       <div className="flex justify-center items-center my-8">
         <div className="flex justify-center items-center font-oxygen bg-pink-900 w-fit rounded-lg">
           <label>
-            <input className="border-2 rounded-xl m-4 p-3 text-center"></input>
+            <input className="border-2 rounded-xl m-4 p-3 text-center" placeholder="Search..."></input>
           </label>
-          <button className="text-white py-6 px-6 font-bold hover:text-lg transition-all duration-300">Search</button>
+          <button className="text-white py-6 px-6 font-bold text-3xl">🔍</button>
         </div>
       </div>
     </>
