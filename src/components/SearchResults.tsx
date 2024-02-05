@@ -15,15 +15,20 @@ const SearchResults = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-center p-8 text-white bg-pink-900 w-[400px]">
+      <div className="justify-center p-8 text-white bg-pink-900 w-[400px]">
         <h1 className="text-5xl font-oxygen font-bold p-3">Results:</h1>
         <ul>
           {songs.map((song) => (
-            <li key={song.songName} className="py-3">
-              <p>Song: {song.songName}</p>
-              <p>Artist: {song.songArtist}</p>
-              <p>Length: {song.songLength}</p>
-            </li>
+            <>
+              <li key={song.songName} className="py-3 bg-pink-700 my-4 flex flex-row space-x-10 p-4">
+                <div>
+                  <p>{song.songName}</p>
+                  <p>{song.songArtist}</p>
+                  <p>{song.songLength}</p>
+                </div>
+                <button className="bg-black h-fit w-6 rounded-full font-bold">+</button>
+              </li>
+            </>
           ))}
         </ul>
       </div>
