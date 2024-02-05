@@ -7,7 +7,7 @@ const SearchBar = () => {
         <label>
           <input className="border-2 rounded-full m-4 p-5 text-center"></input>
         </label>
-        <button className=" bg-white py-6 px-8 rounded-full font-bold shadow-lg">JAM!</button>
+        <button className=" bg-white py-6 px-6 rounded-full font-bold shadow-lg">Search</button>
       </div>
     </>
   );
