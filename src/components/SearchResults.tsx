@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Playlist from './Playlist';
 
 const SearchResults = () => {
   const [playlist, setPlaylist] = useState<any[]>([]);
@@ -8,7 +9,6 @@ const SearchResults = () => {
   };
 
   const songs = [
-    // Receive song objects array from search component, and map into a results list
     {
       name: 'We Run',
       artist: 'Bailey Ibbs',
@@ -23,8 +23,8 @@ const SearchResults = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center my-8">
-        <div className="p-8 text-white bg-pink-900 w-[400px] rounded-xl shadow-xl">
+      <div className="flex justify-center items-center">
+        <div className="p-8 my-8 text-white bg-pink-900 w-[400px] rounded-xl shadow-xl">
           <h2 className="text-4xl font-oxygen font-bold p-3">Results:</h2>
           <ul>
             {songs.map((song) => (
@@ -45,21 +45,9 @@ const SearchResults = () => {
               </>
             ))}
           </ul>
-          <h2 className="text-4xl font-oxygen font-bold p-3 mt-8">Playlist:</h2>
-          <ul>
-            {playlist.map((playlistItem) => (
-              <li
-                key={playlistItem.name}
-                className="py-3 w-72 bg-pink-700 my-2 flex flex-row space-x-10 p-4 hover:bg-violet-600 rounded-xl shadow-lg transition-all duration-300"
-              >
-                <div className="text-left">
-                  <h3 className="font-bold text-lg">{playlistItem.name}</h3>
-                  <p>{playlistItem.artist}</p>
-                  <p>{playlistItem.length}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
+        </div>
+        <div className="p-8 my-8 mx-8 bg-pink-900 w-[400px] rounded-xl shadow-xl">
+          <Playlist playlistData={playlist} />
         </div>
       </div>
     </>
