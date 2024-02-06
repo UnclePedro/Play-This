@@ -47,7 +47,7 @@ const SearchResults = () => {
           </ul>
         </div>
         <div className="p-8 my-8 mx-8 bg-pink-900 w-[400px] rounded-xl shadow-xl">
-          <Playlist playlistData={playlist} />
+          <Playlist playlist={playlist} />
         </div>
       </div>
     </>
