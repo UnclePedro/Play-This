@@ -1,50 +1,29 @@
-import { useEffect, useState } from 'react';
+import Tracklist from './Tracklist';
 
-const Playlist = (props: { playlist: object[] }) => {
-  const [playlistName, setPlaylistName] = useState('New Playlist');
-  const [playlist, setPlaylist] = useState(props.playlist);
-
-  useEffect(() => {
-    setPlaylist(props.playlist);
-  }, [props.playlist]);
-
-  const removeSong = (song: object) => {
-    console.log('Removing song:', song);
-    setPlaylist((prevPlaylist) => prevPlaylist.filter((item) => item.name !== song.name));
-    console.log('Playlist Data', playlist);
+const Playlist = (props: { onAdd: any; onSave: any; onRemove: any; playlistTracks: any; onNameChange: any }) => {
+  const handleNameChange = (event) => {
+    props.onNameChange(event.target.value);
+    console.log(event.target.value);
   };
-
-  console.log('Playlist Data in Playlist:', props.playlist);
 
   return (
     <>
-      <input
-        value={playlistName}
-        onChange={(e) => setPlaylistName(e.target.value)}
-        className="text-2xl font-oxygen font-bold p-3 rounded-xl w-72"
-      ></input>
-      <ul>
-        {playlist.map((playlistItem: object) => (
-          <>
-            <button onClick={() => removeSong(playlistItem)}>
-              <li
-                key={playlistItem.name}
-                className="py-3 w-72 bg-pink-700 my-2 flex flex-row space-x-10 p-4 hover:bg-violet-600 rounded-xl shadow-lg transition-all duration-300 text-white"
-              >
-                <div className="text-left">
-                  <h3 className="font-bold text-lg">{playlistItem.name}</h3>
-                  <p>{playlistItem.artist}</p>
-                  <p>{playlistItem.length}</p>
-                </div>
-                <p className="font-bold">-</p>
-              </li>
-            </button>
-          </>
-        ))}
-      </ul>
-      <button className="py-3 w-72 bg-white font-bold my-2 flex flex-row space-x-10 p-4 hover:bg-violet-600 rounded-xl shadow-lg transition-all duration-300 ">
-        Save to Spotify
-      </button>
+      <div className="p-8 my-8 text-white bg-pink-900 w-[600px] rounded-xl shadow-xl">
+        <div className="flex flex-col items-start">
+          <input
+            onChange={handleNameChange}
+            defaultValue={'New Playlist'}
+            className="text-2xl font-oxygen font-bold p-3 rounded-xl w-72 text-black"
+          />
+          <Tracklist tracks={props.playlistTracks} isRemoval={true} onRemove={props.onRemove} onAdd={props.onAdd} />
+          <button
+            onClick={props.onSave}
+            className="py-3 w-72 bg-pink-700 font-bold my-2 flex flex-row space-x-10 p-4 hover:bg-violet-600 rounded-xl shadow-lg transition-all duration-300 "
+          >
+            Save to Spotify
+          </button>
+        </div>
+      </div>
     </>
   );
 };
