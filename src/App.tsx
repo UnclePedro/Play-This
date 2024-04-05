@@ -26,8 +26,9 @@ function App() {
       id: 2,
     },
   ]);
+
   const [playlistName, setPlaylistName] = useState('New Playlist');
-  const [playlistTracks, setPlaylistTracks] = useState([]);
+  const [playlistTracks, setPlaylistTracks] = useState<any[]>([]);
 
   const addTrack = (track: object) => {
     if (playlistTracks.some((savedTrack) => savedTrack.id === track.id)) return;
@@ -44,7 +45,8 @@ function App() {
   };
 
   const search = (term: string) => {
-    // console.log(term);
+    // logic to take the input (term) and make request to spotify's server to go below
+    console.log(term);
   };
 
   // function to map a trackURI to each track in the playlistTracks array when Save Playlist button is clicked
