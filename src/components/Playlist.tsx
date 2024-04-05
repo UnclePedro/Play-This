@@ -1,6 +1,13 @@
 import Tracklist from './Tracklist';
 
-const Playlist = (props: { onAdd: any; onSave: any; onRemove: any; playlistTracks: any; onNameChange: any }) => {
+const Playlist = (props: {
+  onAdd: any;
+  onSave: any;
+  onRemove: any;
+  playlistTracks: any;
+  onNameChange: any;
+  playlistName: string;
+}) => {
   const handleNameChange = (event: any) => {
     props.onNameChange(event.target.value);
     // console.log(event.target.value);
