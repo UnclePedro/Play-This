@@ -39,10 +39,15 @@ function App() {
     setPlaylistTracks((prevPlaylist) => prevPlaylist.filter((item) => item.name !== track.name));
   };
 
-  const updatePlaylistName = (name) => {
+  const updatePlaylistName = (name: string) => {
     setPlaylistName(name);
   };
 
+  const search = (term: string) => {
+    // console.log(term);
+  };
+
+  // function to map a trackURI to each track in the playlistTracks array when Save Playlist button is clicked
   const savePlaylist = () => {
     const trackURIs = playlistTracks.map((track) => track.uri);
   };
@@ -52,9 +57,9 @@ function App() {
   return (
     <div>
       <Banner />
-      <SearchBar />
-      <div className="flex flex-row justify-center space-x-8">
-        <SearchResults searchResults={searchResults} onAdd={addTrack} />
+      <SearchBar onSearch={search} />
+      <div className="flex flex-col xl:flex-row justify-center">
+        <SearchResults searchResults={searchResults} onAdd={addTrack} onRemove={undefined} />
         <Playlist
           playlistName={playlistName}
           playlistTracks={playlistTracks}
