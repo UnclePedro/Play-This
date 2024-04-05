@@ -27,16 +27,24 @@ function App() {
     },
   ]);
 
-  const [playlistName, setPlaylistName] = useState('New Playlist');
-  const [playlistTracks, setPlaylistTracks] = useState<any[]>([]);
+  interface Track {
+    name: string;
+    artist: string;
+    length: string;
+    id: number;
+    uri?: string; // Assuming 'uri' is an optional property
+  }
 
-  const addTrack = (track: object) => {
+  const [playlistName, setPlaylistName] = useState('New Playlist');
+  const [playlistTracks, setPlaylistTracks] = useState<Track[]>([]);
+
+  const addTrack = (track: Track) => {
     if (playlistTracks.some((savedTrack) => savedTrack.id === track.id)) return;
 
     setPlaylistTracks((prevPlaylistTracks) => [...prevPlaylistTracks, track]);
   };
 
-  const removeTrack = (track: object) => {
+  const removeTrack = (track: Track) => {
     setPlaylistTracks((prevPlaylist) => prevPlaylist.filter((item) => item.name !== track.name));
   };
 
@@ -46,7 +54,7 @@ function App() {
 
   const search = (term: string) => {
     // logic to take the input (term) and make request to spotify's server to go below
-    console.log(term);
+    // console.log(term);
   };
 
   // function to map a trackURI to each track in the playlistTracks array when Save Playlist button is clicked
@@ -68,6 +76,7 @@ function App() {
           onNameChange={updatePlaylistName}
           onRemove={removeTrack}
           onSave={savePlaylist}
+          onAdd={undefined}
         />
       </div>
     </div>
