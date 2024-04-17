@@ -35,7 +35,7 @@ function App() {
     uri?: string; // Assuming 'uri' is an optional property
   }
 
-  const [playlistName, setPlaylistName] = useState('New Playlist');
+  const [playlistName, setPlaylistName] = useState('');
   const [playlistTracks, setPlaylistTracks] = useState<Track[]>([]);
 
   const addTrack = (track: Track) => {

@@ -20,7 +20,8 @@ const Playlist = (props: {
           <div className="flex flex-col items-start">
             <input
               onChange={handleNameChange}
-              defaultValue={'New Playlist'}
+              // defaultValue={'New Playlist'}
+              placeholder="New Playlist"
               className="text-2xl font-oxygen font-bold p-3 rounded-xl w-72 text-black"
             />
             <Tracklist tracks={props.playlistTracks} isRemoval={true} onRemove={props.onRemove} onAdd={props.onAdd} />
