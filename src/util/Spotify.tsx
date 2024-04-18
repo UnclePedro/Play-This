@@ -36,15 +36,18 @@ const Spotify = () => {
         if (!jsonResponse) {
           //   console.log('Response error');
         }
-        return jsonResponse.tracks.items.map((track: { id: string; name: string; artists: string; album: string; uri: string }) => {
+        return jsonResponse.tracks.items.map(
+          (track: { id: string; name: string; artists: string; album: any; uri: string }) => ({
             id: track.id,
             name: track.name,
             artist: track.artists[0],
             album: track.album.name,
-            uri: track.uri
-        })
+            uri: track.uri,
+          }),
+        );
       });
   };
+  return { search };
 };
 
 export default Spotify;

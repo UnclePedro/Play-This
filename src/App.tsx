@@ -3,7 +3,7 @@ import Banner from './components/Banner';
 import Playlist from './components/Playlist';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
-import Tracklist from './components/Tracklist';
+import Spotify from './util/Spotify';
 
 function App() {
   const [searchResults, setSearchResults] = useState([
@@ -32,7 +32,7 @@ function App() {
     artist: string;
     length: string;
     id: number;
-    uri?: string; // Assuming 'uri' is an optional property
+    uri: string;
   }
 
   const [playlistName, setPlaylistName] = useState('');
@@ -54,6 +54,9 @@ function App() {
 
   const search = (term: string) => {
     // logic to take the input (term) and make request to spotify's server to go below
+    Spotify()
+      .search(term)
+      .then((result: any) => setSearchResults(result));
     // console.log(term);
   };
 
