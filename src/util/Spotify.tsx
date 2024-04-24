@@ -25,27 +25,25 @@ const Spotify = () => {
     window.location.href = redirect;
   };
 
-  const search = (term: string) => {
+  const search = async (term: string) => {
+    // console.log(term);
     accessToken = getAccessToken();
-    return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
+    const response = await fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
       method: 'GET',
       headers: { Authorization: `bearer ${accessToken}` },
-    })
-      .then((response) => response.json())
-      .then((jsonResponse) => {
-        if (!jsonResponse) {
-          //   console.log('Response error');
-        }
-        return jsonResponse.tracks.items.map(
-          (track: { id: string; name: string; artists: string; album: any; uri: string }) => ({
-            id: track.id,
-            name: track.name,
-            artist: track.artists[0],
-            album: track.album.name,
-            uri: track.uri,
-          }),
-        );
-      });
+    });
+    const jsonResponse = await response.json();
+    if (!jsonResponse) {
+      return jsonResponse.tracks.items.map(
+        (track: { id: string; name: string; artists: string; album: any; uri: string }) => ({
+          id: track.id,
+          name: track.name,
+          artist: track.artists[0],
+          album: track.album.name,
+          uri: track.uri,
+        }),
+      );
+    }
   };
   return { search };
 };
