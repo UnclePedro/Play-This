@@ -4,7 +4,7 @@ const Tracklist = (props: { tracks: any; onAdd: any; isRemoval: any; onRemove: a
   console.log(props.tracks);
   return (
     <>
-      {props.tracks?.map((track: any) => {
+      {props.tracks.map((track: any) => {
         return (
           <Track
             track={track}

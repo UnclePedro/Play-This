@@ -6,18 +6,7 @@ import SearchResults from './components/SearchResults';
 import Spotify from './util/Spotify';
 
 function App() {
-  const [searchResults, setSearchResults] = useState([]);
-
-  interface Track {
-    name: string;
-    artist: string;
-    length: string;
-    id: number;
-    uri: string;
-  }
-
-  const [playlistName, setPlaylistName] = useState('');
-  const [playlistTracks, setPlaylistTracks] = useState<Track[]>([
+  const [searchResults, setSearchResults] = useState([
     {
       name: 'We Run',
       artist: 'Bailey Ibbs',
@@ -40,6 +29,17 @@ function App() {
       uri: '1234',
     },
   ]);
+
+  interface Track {
+    name: string;
+    artist: string;
+    length: string;
+    id: number;
+    uri: string;
+  }
+
+  const [playlistName, setPlaylistName] = useState('');
+  const [playlistTracks, setPlaylistTracks] = useState<Track[]>([]);
 
   const addTrack = (track: Track) => {
     if (playlistTracks.some((savedTrack) => savedTrack.id === track.id)) return;
