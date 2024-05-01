@@ -21,22 +21,22 @@ const Spotify = () => {
       // clear url after access token expires
       window.history.pushState('Access token', '/');
       return accessToken;
-    } else {
-      // Third check for access token if first and second are both false
-      const redirect = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUrl}`;
-      window.location.href = redirect;
     }
+
+    // Third check for access token if first and second are both false
+    const redirect = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUrl}`;
+    window.location.href = redirect;
   };
 
   const search = async (term: string) => {
     console.log(term);
 
-    accessToken = getAccessToken();
+    accessToken = await getAccessToken();
     console.log(accessToken);
 
     const response = await fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
       method: 'GET',
-      headers: { Authorization: `bearer ${accessToken}` },
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
     console.log(response);
     const jsonResponse = await response.json();
