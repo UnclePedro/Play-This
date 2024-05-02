@@ -73,10 +73,23 @@ export const getToken = async (code: string) => {
       },
       body: body,
     });
-    console.log(response);
+
     return response.json();
   } catch (error) {
     window.location.href = '/';
+  }
+};
+
+// trying to save token to a variable
+export const saveToken = async (code: string) => {
+  try {
+    const tokenResponse = await getToken(code);
+    const accessToken = tokenResponse.access_token;
+    console.log(accessToken);
+    return accessToken;
+  } catch (error) {
+    console.error('Error getting token:', error);
+    // Handle error
   }
 };
 
