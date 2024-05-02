@@ -1,8 +1,6 @@
 import { getToken } from './Authorize';
 
 let accessToken: any;
-const clientId = '17b12d160569489584b96ea99cc989cb';
-const redirectUrl = 'http://localhost:3000/';
 
 const Search = () => {
   const search = async (term: string) => {
