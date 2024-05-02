@@ -85,8 +85,7 @@ export const saveToken = async (code: string) => {
   try {
     const tokenResponse = await getToken(code);
     const accessToken = tokenResponse.access_token;
-    console.log(accessToken);
-    return accessToken;
+    sessionStorage.setItem('access_token', accessToken);
   } catch (error) {
     console.error('Error getting token:', error);
     // Handle error

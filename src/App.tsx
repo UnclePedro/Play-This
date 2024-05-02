@@ -73,7 +73,7 @@ function App() {
   const [codeVerifier, setCodeVerifier] = useState('');
   useEffect(() => {
     setCodeVerifier(sessionStorage.getItem('code_verifier') || '');
-    saveToken;
+    saveToken(codeVerifier);
   }, []);
 
   return (
