@@ -26,7 +26,7 @@ async function generateCodeChallenge(codeVerifier: string): Promise<string> {
   return base64encode(new Uint8Array(digest));
 }
 
-const codeVerifier: string = generateRandomString(128);
+const codeVerifier = generateRandomString(128);
 
 let urlParams = new URLSearchParams();
 
@@ -73,7 +73,7 @@ export const getToken = async (code: string) => {
       },
       body: body,
     });
-
+    console.log(response);
     return response.json();
   } catch (error) {
     window.location.href = '/';
