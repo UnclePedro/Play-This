@@ -61,7 +61,7 @@ function App() {
     Search()
       .search(term)
       .then((result: any) => setSearchResults(result));
-    // console.log(term);
+    console.log(term);
   };
 
   // function to map a trackURI to each track in the playlistTracks array when Save Playlist button is clicked
@@ -78,19 +78,27 @@ function App() {
   return (
     <div>
       <Banner />
-      {codeVerifier ? <></> : <button onClick={authorize}>Authorize</button>}
-      <SearchBar onSearch={search} />
-      <div className="flex flex-col xl:flex-row justify-center">
-        <SearchResults searchResults={searchResults} onAdd={addTrack} onRemove={undefined} />
-        <Playlist
-          playlistName={playlistName}
-          playlistTracks={playlistTracks}
-          onNameChange={updatePlaylistName}
-          onRemove={removeTrack}
-          onSave={savePlaylist}
-          onAdd={undefined}
-        />
-      </div>
+      {codeVerifier ? (
+        <>
+          {' '}
+          <SearchBar onSearch={search} />
+          <div className="flex flex-col xl:flex-row justify-center">
+            <SearchResults searchResults={searchResults} onAdd={addTrack} onRemove={undefined} />
+            <Playlist
+              playlistName={playlistName}
+              playlistTracks={playlistTracks}
+              onNameChange={updatePlaylistName}
+              onRemove={removeTrack}
+              onSave={savePlaylist}
+              onAdd={undefined}
+            />
+          </div>
+        </>
+      ) : (
+        <button onClick={authorize} className="flex justify-center p-4 text-white bg-pink-900 rounded-xl shadow-xl">
+          Log In
+        </button>
+      )}
     </div>
   );
 }
