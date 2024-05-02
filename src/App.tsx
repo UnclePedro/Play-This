@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Banner from './components/Banner';
 import Playlist from './components/Playlist';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
-import Spotify from './util/Spotify';
+import { authorize } from './util/Authorize';
+import Search from './util/Search';
 
 function App() {
   const [searchResults, setSearchResults] = useState([
@@ -56,8 +57,8 @@ function App() {
   };
 
   const search = (term: string) => {
-    // logic to take the input (term) and make request to spotify's server to go below
-    Spotify()
+    // logic to take the input (term) and make request to spotify's server
+    Search()
       .search(term)
       .then((result: any) => setSearchResults(result));
     // console.log(term);
@@ -68,11 +69,16 @@ function App() {
     const trackURIs = playlistTracks.map((track) => track.uri);
   };
 
-  // Save playlist function
+  // Authorization
+  const [codeVerifier, setCodeVerifier] = useState('');
+  useEffect(() => {
+    setCodeVerifier(sessionStorage.getItem('code_verifier') || '');
+  }, []);
 
   return (
     <div>
       <Banner />
+      {codeVerifier ? <></> : <button onClick={authorize}>Authorize</button>}
       <SearchBar onSearch={search} />
       <div className="flex flex-col xl:flex-row justify-center">
         <SearchResults searchResults={searchResults} onAdd={addTrack} onRemove={undefined} />
