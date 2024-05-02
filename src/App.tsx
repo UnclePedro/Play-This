@@ -3,7 +3,7 @@ import Banner from './components/Banner';
 import Playlist from './components/Playlist';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
-import { authorize } from './util/Authorize';
+import { authorize, getToken, saveToken } from './util/Authorize';
 import Search from './util/Search';
 
 function App() {
@@ -73,6 +73,7 @@ function App() {
   const [codeVerifier, setCodeVerifier] = useState('');
   useEffect(() => {
     setCodeVerifier(sessionStorage.getItem('code_verifier') || '');
+    saveToken;
   }, []);
 
   return (
@@ -80,7 +81,6 @@ function App() {
       <Banner />
       {codeVerifier ? (
         <>
-          {' '}
           <SearchBar onSearch={search} />
           <div className="flex flex-col xl:flex-row justify-center">
             <SearchResults searchResults={searchResults} onAdd={addTrack} onRemove={undefined} />
