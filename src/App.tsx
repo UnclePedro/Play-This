@@ -3,7 +3,7 @@ import Banner from './components/Banner';
 import Playlist from './components/Playlist';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
-import { authorize, getToken, saveToken } from './util/Authorize';
+import { authorize, getToken } from './util/Authorize';
 import Search from './util/Search';
 
 function App() {
@@ -71,9 +71,10 @@ function App() {
 
   // Authorization
   const [codeVerifier, setCodeVerifier] = useState('');
+  const [token, setToken] = useState('');
   useEffect(() => {
     setCodeVerifier(sessionStorage.getItem('code_verifier') || '');
-    saveToken(codeVerifier);
+    setToken(sessionStorage.getItem('access_token') || '');
   }, []);
 
   return (
@@ -82,6 +83,9 @@ function App() {
       {codeVerifier ? (
         <>
           <SearchBar onSearch={search} />
+          <button onClick={getToken} className="justify-center p-4 text-white bg-pink-900 rounded-xl shadow-xl">
+            Get Token
+          </button>
           <div className="flex flex-col xl:flex-row justify-center">
             <SearchResults searchResults={searchResults} onAdd={addTrack} onRemove={undefined} />
             <Playlist
@@ -95,9 +99,11 @@ function App() {
           </div>
         </>
       ) : (
-        <button onClick={authorize} className="flex justify-center p-4 text-white bg-pink-900 rounded-xl shadow-xl">
-          Log In
-        </button>
+        <div className="flex justify-center">
+          <button onClick={authorize} className="justify-center p-4 text-white bg-pink-900 rounded-xl shadow-xl">
+            Log In
+          </button>
+        </div>
       )}
     </div>
   );
