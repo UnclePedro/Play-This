@@ -62,10 +62,12 @@ export const authorize = async () => {
 
     window.location.href = 'https://accounts.spotify.com/authorize?' + args;
   });
-  const urlParams = new URLSearchParams(window.location.search);
-  const code = urlParams.get('code');
-  console.log(code);
 };
+
+const urlParams = new URLSearchParams(window.location.search);
+const code: any = urlParams.get('code');
+
+// console.log(code);
 
 // export const getToken = async (code: string) => {
 //   const codeVerifier = sessionStorage.getItem('code_verifier');
@@ -93,10 +95,10 @@ export const authorize = async () => {
 //   }
 // };
 
-export const getToken = async (code: any) => {
+export const getToken = async () => {
   const codeVerifier = sessionStorage.getItem('code_verifier');
 
-  const payload = {
+  const authParameters = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -104,13 +106,13 @@ export const getToken = async (code: any) => {
     body: new URLSearchParams({
       client_id: SPOTIFY_CLIENT_ID,
       grant_type: 'authorization_code',
-      code,
+      code: code,
       redirect_uri: redirectUri,
       code_verifier: codeVerifier || '',
     }),
   };
 
-  const body = await fetch('https://accounts.spotify.com/api/token', payload);
+  const body = await fetch('https://accounts.spotify.com/api/token', authParameters);
   const response = await body.json();
   console.log(response);
 
