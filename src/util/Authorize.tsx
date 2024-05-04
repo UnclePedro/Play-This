@@ -65,35 +65,7 @@ export const authorize = async () => {
 };
 
 const urlParams = new URLSearchParams(window.location.search);
-const code: any = urlParams.get('code');
-
-// console.log(code);
-
-// export const getToken = async (code: string) => {
-//   const codeVerifier = sessionStorage.getItem('code_verifier');
-
-//   const body = new URLSearchParams({
-//     grant_type: 'authorization_code' || '',
-//     code: code || '',
-//     redirect_uri: redirectUri || '',
-//     client_id: SPOTIFY_CLIENT_ID || '',
-//     code_verifier: codeVerifier || '',
-//   });
-//   try {
-//     const response = await fetch('https://accounts.spotify.com/api/token', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/x-www-form-urlencoded',
-//       },
-//       body: body,
-//     });
-
-//     console.log(response.json);
-//     return response.json();
-//   } catch (error) {
-//     window.location.href = '/';
-//   }
-// };
+const code = urlParams.get('code');
 
 export const getToken = async () => {
   const codeVerifier = sessionStorage.getItem('code_verifier');
@@ -106,7 +78,7 @@ export const getToken = async () => {
     body: new URLSearchParams({
       client_id: SPOTIFY_CLIENT_ID,
       grant_type: 'authorization_code',
-      code: code,
+      code: code || '',
       redirect_uri: redirectUri,
       code_verifier: codeVerifier || '',
     }),
@@ -118,20 +90,6 @@ export const getToken = async () => {
 
   localStorage.setItem('access_token', response.access_token);
 };
-
-// // trying to save token to a variable
-// export const saveToken = async (code: string) => {
-//   try {
-//     const tokenResponse = await getToken(code);
-//     const accessToken = tokenResponse.access_token;
-//     sessionStorage.setItem('access_token', accessToken);
-//     return true;
-//   } catch (error) {
-//     console.error('Error getting token:', error);
-//     return false;
-//     // Handle error
-//   }
-// };
 
 export const refreshSpotifyToken = async (refresh_token: string) => {
   const body = new URLSearchParams({
