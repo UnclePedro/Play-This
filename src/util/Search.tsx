@@ -9,8 +9,6 @@ const Search = () => {
     });
     const jsonResponse = await response.json();
 
-    // console.log(window.location.href);
-
     if (jsonResponse) {
       console.log(jsonResponse);
       return jsonResponse.tracks.items.map(
