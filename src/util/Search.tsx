@@ -6,7 +6,7 @@ const Search = () => {
   const search = async (term: string) => {
     // console.log(term);
 
-    accessToken = getToken;
+    accessToken = getToken();
     console.log(`Your access token is: ${accessToken}`);
 
     const response = await fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
@@ -16,7 +16,7 @@ const Search = () => {
     console.log(response);
     const jsonResponse = await response.json();
 
-    console.log(window.location.href);
+    // console.log(window.location.href);
 
     if (jsonResponse) {
       console.log(jsonResponse);

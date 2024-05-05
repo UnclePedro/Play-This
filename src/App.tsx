@@ -74,7 +74,7 @@ function App() {
   const [token, setToken] = useState('');
   useEffect(() => {
     setCodeVerifier(sessionStorage.getItem('code_verifier') || '');
-    setToken(sessionStorage.getItem('access_token') || '');
+    // getToken();
   }, []);
 
   return (
@@ -83,9 +83,9 @@ function App() {
       {codeVerifier ? (
         <>
           <SearchBar onSearch={search} />
-          <button onClick={getToken} className="justify-center p-4 text-white bg-pink-900 rounded-xl shadow-xl">
+          {/* <button onClick={getToken} className="justify-center p-4 text-white bg-pink-900 rounded-xl shadow-xl">
             Get Token
-          </button>
+          </button> */}
           <div className="flex flex-col xl:flex-row justify-center">
             <SearchResults searchResults={searchResults} onAdd={addTrack} onRemove={undefined} />
             <Playlist
