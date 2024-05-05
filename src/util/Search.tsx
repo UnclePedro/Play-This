@@ -1,19 +1,12 @@
-import { getToken } from './Authorize';
-
-let accessToken: any;
-
 const Search = () => {
   const search = async (term: string) => {
-    // console.log(term);
-
-    accessToken = getToken();
+    const accessToken = sessionStorage.getItem('access_token');
     console.log(`Your access token is: ${accessToken}`);
 
     const response = await fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
       method: 'GET',
       headers: { Authorization: `Bearer ${accessToken}` },
     });
-    console.log(response);
     const jsonResponse = await response.json();
 
     // console.log(window.location.href);

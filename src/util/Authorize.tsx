@@ -88,7 +88,7 @@ export const getToken = async () => {
   const response = await body.json();
   console.log(response);
 
-  localStorage.setItem('access_token', response.access_token);
+  sessionStorage.setItem('access_token', response.access_token);
 };
 
 export const refreshSpotifyToken = async (refresh_token: string) => {
