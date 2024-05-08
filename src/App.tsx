@@ -4,47 +4,37 @@ import Playlist from './components/Playlist';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
 import { authorize, getToken } from './util/Authorize';
-import Search from './util/Search';
+import { search } from './util/Search';
+
+interface Track {
+  name: string;
+  artist: string;
+  length: string;
+  id: number;
+  uri: string;
+}
 
 function App() {
-  const [searchResults, setSearchResults] = useState([
-    {
-      name: 'We Run',
-      artist: 'Bailey Ibbs',
-      length: '6:11',
-      id: 0,
-      uri: '1234',
-    },
-    {
-      name: 'Gas Me Up (Diligent)',
-      artist: 'Skepta',
-      length: '2:51',
-      id: 1,
-      uri: '1234',
-    },
-    {
-      name: 'Greaze Mode',
-      artist: 'Skepta',
-      length: '3:15',
-      id: 2,
-      uri: '1234',
-    },
-  ]);
+  const [searchResults, setSearchResults] = useState([]);
 
-  interface Track {
-    name: string;
-    artist: string;
-    length: string;
-    id: number;
-    uri: string;
-  }
+  // Authorization
+  const [codeVerifier, setCodeVerifier] = useState('');
+  useEffect(() => {
+    setCodeVerifier(sessionStorage.getItem('code_verifier') || '');
+  }, []);
+
+  const searchTrigger = (term: string) => {
+    search(term).then((result) => {
+      setSearchResults(result);
+      console.log(`Your search results are ${result}`);
+    });
+  };
 
   const [playlistName, setPlaylistName] = useState('');
   const [playlistTracks, setPlaylistTracks] = useState<Track[]>([]);
 
   const addTrack = (track: Track) => {
     if (playlistTracks.some((savedTrack) => savedTrack.id === track.id)) return;
-
     setPlaylistTracks((prevPlaylistTracks) => [...prevPlaylistTracks, track]);
   };
 
@@ -56,31 +46,18 @@ function App() {
     setPlaylistName(name);
   };
 
-  const search = (term: string) => {
-    // logic to take the input (term) and make request to spotify's server
-    Search()
-      .search(term)
-      .then((result: any) => setSearchResults(result));
-    console.log(term);
-  };
-
   // function to map a trackURI to each track in the playlistTracks array when Save Playlist button is clicked
+  // Don't think I need this, URI's are mapped on search
   const savePlaylist = () => {
     const trackURIs = playlistTracks.map((track) => track.uri);
   };
-
-  // Authorization
-  const [codeVerifier, setCodeVerifier] = useState('');
-  useEffect(() => {
-    setCodeVerifier(sessionStorage.getItem('code_verifier') || '');
-  }, []);
 
   return (
     <div>
       <Banner />
       {codeVerifier ? (
         <>
-          <SearchBar onSearch={search} />
+          <SearchBar onSearch={searchTrigger} />
           <button onClick={getToken} className="justify-center p-4 text-white bg-pink-900 rounded-xl shadow-xl">
             Get Token
           </button>
