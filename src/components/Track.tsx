@@ -1,4 +1,5 @@
 const Track = (props: { isRemoval: boolean; onRemove: any; onAdd: any; track: any }) => {
+  console.log('Track:', props.track);
   const addTrack = () => {
     props.onAdd(props.track);
   };
