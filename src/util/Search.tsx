@@ -11,13 +11,15 @@ export const search = async (term: string) => {
   if (jsonResponse) {
     // console.log(jsonResponse);
     const results = jsonResponse.tracks.items.map(
-      (track: { id: string; name: string; artists: string; album: any; uri: string }) => ({
-        id: track.id,
-        name: track.name,
-        artist: track.artists[0],
-        album: track.album.name,
-        uri: track.uri,
-      }),
+      (track: { id: string; name: string; artists: string; album: any; uri: string }) => [
+        {
+          id: track.id,
+          name: track.name,
+          artist: track.artists[0],
+          album: track.album.name,
+          uri: track.uri,
+        },
+      ],
     );
     return results;
   }
