@@ -7,15 +7,37 @@ import { authorize, getToken } from './util/Authorize';
 import { search } from './util/Search';
 
 interface Track {
+  id: number;
   name: string;
   artist: string;
-  length: string;
-  id: number;
+  album: string;
   uri: string;
 }
 
 function App() {
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState([
+    {
+      name: 'We Run',
+      artist: 'Bailey Ibbs',
+      length: '6:11',
+      id: 0,
+      uri: '1234',
+    },
+    {
+      name: 'Gas Me Up (Diligent)',
+      artist: 'Skepta',
+      length: '2:51',
+      id: 1,
+      uri: '1234',
+    },
+    {
+      name: 'Greaze Mode',
+      artist: 'Skepta',
+      length: '3:15',
+      id: 2,
+      uri: '1234',
+    },
+  ]);
 
   // Authorization
   const [codeVerifier, setCodeVerifier] = useState('');
