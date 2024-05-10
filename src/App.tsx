@@ -16,27 +16,27 @@ interface Track {
 
 function App() {
   const [searchResults, setSearchResults] = useState([
-    {
-      name: 'We Run',
-      artist: 'Bailey Ibbs',
-      length: '6:11',
-      id: 0,
-      uri: '1234',
-    },
-    {
-      name: 'Gas Me Up (Diligent)',
-      artist: 'Skepta',
-      length: '2:51',
-      id: 1,
-      uri: '1234',
-    },
-    {
-      name: 'Greaze Mode',
-      artist: 'Skepta',
-      length: '3:15',
-      id: 2,
-      uri: '1234',
-    },
+    // {
+    //   name: 'We Run',
+    //   artist: 'Bailey Ibbs',
+    //   length: '6:11',
+    //   id: 0,
+    //   uri: '1234',
+    // },
+    // {
+    //   name: 'Gas Me Up (Diligent)',
+    //   artist: 'Skepta',
+    //   length: '2:51',
+    //   id: 1,
+    //   uri: '1234',
+    // },
+    // {
+    //   name: 'Greaze Mode',
+    //   artist: 'Skepta',
+    //   length: '3:15',
+    //   id: 2,
+    //   uri: '1234',
+    // },
   ]);
 
   // Authorization
