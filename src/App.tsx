@@ -46,6 +46,7 @@ function App() {
   }, []);
 
   const searchTrigger = (term: string) => {
+    getToken();
     search(term).then((result) => {
       setSearchResults(result);
       console.log(`Your search results are ${result}`);
@@ -80,9 +81,6 @@ function App() {
       {codeVerifier ? (
         <>
           <SearchBar onSearch={searchTrigger} />
-          <button onClick={getToken} className="justify-center p-4 text-white bg-pink-900 rounded-xl shadow-xl">
-            Get Token
-          </button>
           <div className="flex flex-col xl:flex-row justify-center">
             <SearchResults searchResults={searchResults} onAdd={addTrack} onRemove={undefined} />
             <Playlist
