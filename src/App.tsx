@@ -5,6 +5,7 @@ import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
 import { authorize, getToken } from './util/Authorize';
 import { search } from './util/Search';
+import { savePlaylist } from './util/SavePlaylist';
 
 interface Track {
   id: number;
@@ -46,7 +47,6 @@ function App() {
   }, []);
 
   const searchTrigger = (term: string) => {
-    getToken();
     search(term).then((result) => {
       setSearchResults(result);
       console.log(`Your search results are ${result}`);
@@ -71,9 +71,9 @@ function App() {
 
   // function to map a trackURI to each track in the playlistTracks array when Save Playlist button is clicked
   // Don't think I need this, URI's are mapped on search
-  const savePlaylist = () => {
-    const trackURIs = playlistTracks.map((track) => track.uri);
-  };
+  // const savePlaylist = () => {
+  //   const trackURIs = playlistTracks.map((track) => track.uri);
+  // };
 
   return (
     <div>
@@ -81,6 +81,9 @@ function App() {
       {codeVerifier ? (
         <>
           <SearchBar onSearch={searchTrigger} />
+          <button onClick={getToken} className="justify-center p-4 text-white bg-pink-900 rounded-xl shadow-xl">
+            Get Token
+          </button>
           <div className="flex flex-col xl:flex-row justify-center">
             <SearchResults searchResults={searchResults} onAdd={addTrack} onRemove={undefined} />
             <Playlist
@@ -92,6 +95,9 @@ function App() {
               onAdd={undefined}
             />
           </div>
+          <button onClick={savePlaylist} className="justify-center p-4 text-white bg-pink-900 rounded-xl shadow-xl">
+            Get User ID
+          </button>
         </>
       ) : (
         <div className="flex justify-center">
