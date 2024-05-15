@@ -16,29 +16,7 @@ interface Track {
 }
 
 function App() {
-  const [searchResults, setSearchResults] = useState([
-    // {
-    //   name: 'We Run',
-    //   artist: 'Bailey Ibbs',
-    //   length: '6:11',
-    //   id: 0,
-    //   uri: '1234',
-    // },
-    // {
-    //   name: 'Gas Me Up (Diligent)',
-    //   artist: 'Skepta',
-    //   length: '2:51',
-    //   id: 1,
-    //   uri: '1234',
-    // },
-    // {
-    //   name: 'Greaze Mode',
-    //   artist: 'Skepta',
-    //   length: '3:15',
-    //   id: 2,
-    //   uri: '1234',
-    // },
-  ]);
+  const [searchResults, setSearchResults] = useState([]);
 
   // Authorization
   const [codeVerifier, setCodeVerifier] = useState('');
@@ -71,9 +49,11 @@ function App() {
 
   // function to map a trackURI to each track in the playlistTracks array when Save Playlist button is clicked
   // Don't think I need this, URI's are mapped on search
-  // const savePlaylist = () => {
-  //   const trackURIs = playlistTracks.map((track) => track.uri);
-  // };
+  const triggerSavePlaylist = () => {
+    const trackURIs = playlistTracks.map((track) => track.uri);
+    savePlaylist(playlistName, trackURIs);
+    // console.log(trackURIs);
+  };
 
   return (
     <div>
@@ -85,19 +65,16 @@ function App() {
             Get Token
           </button>
           <div className="flex flex-col xl:flex-row justify-center">
-            <SearchResults searchResults={searchResults} onAdd={addTrack} onRemove={undefined} />
+            <SearchResults searchResults={searchResults} onAdd={addTrack} onRemove={removeTrack} />
             <Playlist
               playlistName={playlistName}
               playlistTracks={playlistTracks}
               onNameChange={updatePlaylistName}
+              onSave={triggerSavePlaylist}
+              onAdd={addTrack}
               onRemove={removeTrack}
-              onSave={savePlaylist}
-              onAdd={undefined}
             />
           </div>
-          <button onClick={savePlaylist} className="justify-center p-4 text-white bg-pink-900 rounded-xl shadow-xl">
-            Get User ID
-          </button>
         </>
       ) : (
         <div className="flex justify-center">
