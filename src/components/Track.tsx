@@ -1,4 +1,5 @@
 const Track = (props: { isRemoval: boolean; onRemove: any; onAdd: any; track: any }) => {
+  console.log('Track:', props.track);
   const addTrack = () => {
     props.onAdd(props.track);
   };
@@ -28,7 +29,8 @@ const Track = (props: { isRemoval: boolean; onRemove: any; onAdd: any; track: an
         <div className="bg-pink-700 flex flex-row justify-between px-6 rounded-xl shadow-lg w-[500px]">
           <div className="flex items-center font-bold">{props.track.name}</div>
           <div className="flex items-center">{props.track.artist}</div>
-          <div className="flex items-center">{props.track.length}</div>
+          <div className="flex items-center">{props.track.album}</div>
+
           <div className="p-4">{renderAction()}</div>
         </div>
       </div>
