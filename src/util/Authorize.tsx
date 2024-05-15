@@ -12,22 +12,6 @@ function generateRandomString(length: number) {
 
 const codeVerifier = generateRandomString(128);
 
-// const sha256 = async (plain: string) => {
-//   const encoder = new TextEncoder();
-//   const data = encoder.encode(plain);
-//   return window.crypto.subtle.digest('SHA-256', data);
-// };
-
-// const base64encode = (input: any) => {
-//   return btoa(String.fromCharCode(...new Uint8Array(input)))
-//     .replace(/=/g, '')
-//     .replace(/\+/g, '-')
-//     .replace(/\//g, '_');
-// };
-
-// const hashed = await sha256(codeVerifier);
-// const generateCodeChallenge = base64encode(hashed);
-
 async function generateCodeChallenge(codeVerifier: string): Promise<string> {
   function base64encode(string: Uint8Array): string {
     return btoa(String.fromCharCode.apply(null, Array.from(string)))
@@ -43,10 +27,11 @@ async function generateCodeChallenge(codeVerifier: string): Promise<string> {
   return base64encode(new Uint8Array(digest));
 }
 
-export const authorize = async () => {
+export const authorize = () => {
   generateCodeChallenge(codeVerifier).then((codeChallenge: any) => {
     const state = generateRandomString(16);
-    const scope = 'user-read-private user-read-email streaming user-read-playback-state user-modify-playback-state';
+    const scope =
+      'user-read-private user-read-email streaming user-read-playback-state user-modify-playback-state playlist-modify-private playlist-modify-public';
 
     sessionStorage.setItem('code_verifier', codeVerifier);
 
