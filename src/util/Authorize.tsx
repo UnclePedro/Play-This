@@ -53,6 +53,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const code = urlParams.get('code');
 
 export const getToken = async () => {
+  // need this to return access token if one already exists
   const codeVerifier = sessionStorage.getItem('code_verifier');
 
   const authParameters = {

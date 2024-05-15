@@ -47,9 +47,9 @@ function App() {
     setPlaylistName(name);
   };
 
-  // function to map a trackURI to each track in the playlistTracks array when Save Playlist button is clicked
-  // Don't think I need this, URI's are mapped on search
-  const triggerSavePlaylist = () => {
+  // function to map a trackURI to each track in the playlistTracks array when Save Playlist button is clicked, to give Spotify the data to add tracks to playlist
+  const triggerSavePlaylist = async () => {
+    await getToken();
     const trackURIs = playlistTracks.map((track) => track.uri);
     savePlaylist(playlistName, trackURIs);
     // console.log(trackURIs);
@@ -61,9 +61,9 @@ function App() {
       {codeVerifier ? (
         <>
           <SearchBar onSearch={searchTrigger} />
-          <button onClick={getToken} className="justify-center p-4 text-white bg-pink-900 rounded-xl shadow-xl">
+          {/* <button onClick={getToken} className="justify-center p-4 text-white bg-pink-900 rounded-xl shadow-xl">
             Get Token
-          </button>
+          </button> */}
           <div className="flex flex-col xl:flex-row justify-center">
             <SearchResults searchResults={searchResults} onAdd={addTrack} onRemove={removeTrack} />
             <Playlist
