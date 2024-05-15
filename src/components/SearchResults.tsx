@@ -1,6 +1,7 @@
 import Tracklist from './Tracklist';
 
 const SearchResults = (props: { onRemove: any; searchResults: any; onAdd: any }) => {
+  console.log('Search Results:', props.searchResults);
   return (
     <>
       <div className="flex justify-center m-4">
