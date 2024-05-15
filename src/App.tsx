@@ -64,9 +64,6 @@ function App() {
       {codeVerifier ? (
         <>
           <SearchBar onSearch={searchTrigger} />
-          {/* <button onClick={getToken} className="justify-center p-4 text-white bg-pink-900 rounded-xl shadow-xl">
-            Get Token
-          </button> */}
           <div className="flex flex-col xl:flex-row justify-center">
             <SearchResults searchResults={searchResults} onAdd={addTrack} onRemove={removeTrack} />
             <Playlist
