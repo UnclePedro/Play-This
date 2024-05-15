@@ -26,4 +26,5 @@ export const savePlaylist = async (playlistName: string, trackURIs: any) => {
     headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({ uris: trackURIs }),
   });
+  window.alert('Playlist saved!');
 };

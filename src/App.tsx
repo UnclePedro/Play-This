@@ -51,7 +51,10 @@ function App() {
   // function to map a trackURI to each track in the playlistTracks array when Save Playlist button is clicked, to give Spotify the data to add tracks to playlist
   const triggerSavePlaylist = async () => {
     const trackURIs = playlistTracks.map((track) => track.uri);
-    savePlaylist(playlistName, trackURIs);
+    savePlaylist(playlistName, trackURIs).then(() => {
+      updatePlaylistName('');
+      setPlaylistTracks([]);
+    });
     // console.log(trackURIs);
   };
 
