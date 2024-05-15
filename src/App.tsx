@@ -24,7 +24,8 @@ function App() {
     setCodeVerifier(sessionStorage.getItem('code_verifier') || '');
   }, []);
 
-  const searchTrigger = (term: string) => {
+  const searchTrigger = async (term: string) => {
+    await getToken();
     search(term).then((result) => {
       setSearchResults(result);
       console.log(`Your search results are ${result}`);
@@ -49,7 +50,6 @@ function App() {
 
   // function to map a trackURI to each track in the playlistTracks array when Save Playlist button is clicked, to give Spotify the data to add tracks to playlist
   const triggerSavePlaylist = async () => {
-    await getToken();
     const trackURIs = playlistTracks.map((track) => track.uri);
     savePlaylist(playlistName, trackURIs);
     // console.log(trackURIs);
