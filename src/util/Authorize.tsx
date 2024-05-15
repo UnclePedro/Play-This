@@ -54,6 +54,7 @@ const code = urlParams.get('code');
 
 export const getToken = async () => {
   // need this to return access token if one already exists
+  if (sessionStorage.getItem('access_token')) return;
   const codeVerifier = sessionStorage.getItem('code_verifier');
 
   const authParameters = {
