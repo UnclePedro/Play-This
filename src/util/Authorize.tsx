@@ -1,5 +1,5 @@
 const SPOTIFY_CLIENT_ID = '17b12d160569489584b96ea99cc989cb';
-const redirectUri = 'https://play-this-app.vercel.app/auth/callback';
+const redirectUri = 'https://play-this-app.vercel.app';
 
 function generateRandomString(length: number) {
   let text = '';
