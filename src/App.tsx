@@ -52,7 +52,7 @@ function App() {
   const triggerSavePlaylist = async () => {
     const trackURIs = playlistTracks.map((track) => track.uri);
     savePlaylist(playlistName, trackURIs).then(() => {
-      updatePlaylistName('');
+      // setPlaylistName('');
       setPlaylistTracks([]);
     });
     // console.log(trackURIs);
