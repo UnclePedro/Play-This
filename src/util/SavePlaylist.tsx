@@ -26,5 +26,11 @@ export const savePlaylist = async (playlistName: string, trackURIs: any) => {
     headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({ uris: trackURIs }),
   });
-  window.alert('Playlist saved!');
+  const addTracksJsonResponse = await addPlaylistTracks.json();
+  console.log(addTracksJsonResponse.snapshot_id);
+  if (addTracksJsonResponse.snapshot_id) {
+    window.alert('Playlist saved!');
+  } else {
+    window.alert('Error saving playlist, please try again.');
+  }
 };
