@@ -61,7 +61,7 @@ function App() {
   return (
     <div>
       <Banner />
-      {codeVerifier ? (
+      {codeVerifier && window.location.href.includes('/auth/callback?code=') ? (
         <>
           <SearchBar onSearch={searchTrigger} />
           <div className="flex flex-col xl:flex-row justify-center">
