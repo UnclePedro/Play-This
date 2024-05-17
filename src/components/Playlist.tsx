@@ -16,13 +16,13 @@ const Playlist = (props: {
   return (
     <>
       <div className="flex justify-center m-4">
-        <div className="p-8 xl:my-8 text-white bg-pink-900 w-[600px] rounded-xl shadow-xl">
+        <div className="p-4 xl:my-8 text-white bg-pink-900 w-[600px] rounded-xl shadow-xl">
           <div className="flex flex-col">
             <input
               onChange={handleNameChange}
               // defaultValue={'New Playlist'}
               placeholder="New Playlist"
-              className="text-2xl font-oxygen font-bold p-3 rounded-xl w-72 text-black mb-1"
+              className="text-xl sm:text-2xl font-oxygen font-bold p-3 rounded-xl w-72 text-black mb-1"
             />
             <Tracklist tracks={props.playlistTracks} isRemoval={true} onRemove={props.onRemove} onAdd={props.onAdd} />
             <button
