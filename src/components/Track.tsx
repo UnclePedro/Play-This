@@ -25,11 +25,17 @@ const Track = (props: { isRemoval: boolean; onRemove: any; onAdd: any; track: an
 
   return (
     <>
-      <div className="flex justify-center items-center my-2">
-        <div className="w-11/12 sm:w-[500px] bg-pink-700 flex flex-row justify-between px-6 rounded-xl shadow-lg ">
-          <div className="flex items-center font-bold">{props.track.name}</div>
-          <div className="flex items-center">{props.track.artist}</div>
-          <div className="flex items-center">{props.track.album}</div>
+      <div className="flex justify-center items-center ">
+        <div className="w-11/12 sm:w-[500px] bg-pink-700 flex rounded-xl shadow-lg p-2 my-1">
+          <div className="flex items-center font-bold px-2 w-[200px]">
+            {props.track.name.length < 25 ? props.track.name : props.track.name.substring(0, 40) + '...'}
+          </div>
+          <div className="flex items-center px-2 w-[166px]">
+            {props.track.artist.length < 25 ? props.track.artist : props.track.artist.substring(0, 40) + '...'}
+          </div>
+          <div className="flex items-center px-2 w-[166px]">
+            {props.track.album.length < 25 ? props.track.album : props.track.album.substring(0, 40) + '...'}
+          </div>
 
           <div className="p-4">{renderAction()}</div>
         </div>
