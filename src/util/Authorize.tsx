@@ -1,5 +1,5 @@
 const SPOTIFY_CLIENT_ID = '17b12d160569489584b96ea99cc989cb';
-const redirectUri = 'https://play-this-app.vercel.app';
+const redirectUri = 'http://localhost:5173/auth/callback';
 // 'http://localhost:5173/auth/callback'
 
 function generateRandomString(length: number) {
@@ -31,8 +31,7 @@ async function generateCodeChallenge(codeVerifier: string): Promise<string> {
 export const authorize = () => {
   generateCodeChallenge(codeVerifier).then((codeChallenge: any) => {
     const state = generateRandomString(16);
-    const scope =
-      'user-read-private user-read-email streaming user-read-playback-state user-modify-playback-state playlist-modify-private playlist-modify-public';
+    const scope = 'playlist-modify-private playlist-modify-public';
 
     sessionStorage.setItem('code_verifier', codeVerifier);
 
