@@ -29,7 +29,7 @@ async function generateCodeChallenge(codeVerifier: string): Promise<string> {
 }
 
 export const authorize = () => {
-  generateCodeChallenge(codeVerifier).then((codeChallenge: any) => {
+  generateCodeChallenge(codeVerifier).then((codeChallenge: string) => {
     const state = generateRandomString(16);
     const scope = 'playlist-modify-private playlist-modify-public';
 

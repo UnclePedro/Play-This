@@ -2,8 +2,8 @@ import Tracklist from './Tracklist';
 
 const Playlist = (props: {
   onAdd: any;
-  onSave: any;
   onRemove: any;
+  onSave: React.MouseEventHandler<HTMLButtonElement>;
   playlistTracks: any;
   onNameChange: any;
   playlistName: string;

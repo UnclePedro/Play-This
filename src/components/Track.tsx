@@ -1,4 +1,9 @@
-const Track = (props: { isRemoval: boolean; onRemove: any; onAdd: any; track: any }) => {
+const Track = (props: {
+  isRemoval: boolean;
+  onRemove: React.MouseEventHandler<HTMLButtonElement>;
+  onAdd: React.MouseEventHandler<HTMLButtonElement>;
+  track: any;
+}) => {
   // console.log('Track:', props.track);
   const addTrack = () => {
     props.onAdd(props.track);

@@ -1,6 +1,6 @@
 import Track from './Track';
 
-const Tracklist = (props: { tracks: any; onAdd: any; isRemoval: any; onRemove: any }) => {
+const Tracklist = (props: { tracks: any; onAdd: any; onRemove: any; isRemoval: boolean }) => {
   console.log('Tracklist:', props.tracks);
   return (
     <>
