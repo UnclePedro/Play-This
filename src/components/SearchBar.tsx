@@ -12,6 +12,12 @@ const SearchBar = (props: { onSearch: any }) => {
     setTerm(event.target.value);
   };
 
+  const handleEnterPress = (event: any) => {
+    if (event.key === 'Enter') {
+      passTerm();
+    }
+  };
+
   return (
     <>
       <div className="flex justify-center items-center my-8">
@@ -19,6 +25,8 @@ const SearchBar = (props: { onSearch: any }) => {
           <label>
             <input
               onChange={handleTermChange}
+              // onKeyDown={handleEnterPress}
+              onKeyUp={passTerm}
               className="border-2 rounded-xl m-4 p-3 text-center"
               placeholder="Search..."
             ></input>
