@@ -6,14 +6,7 @@ import SearchResults from './components/SearchResults';
 import { authorize, getToken } from './util/Authorize';
 import { search } from './util/Search';
 import { savePlaylist } from './util/SavePlaylist';
-
-interface Track {
-  id: number;
-  name: string;
-  artist: string;
-  album: string;
-  uri: string;
-}
+import { Track } from './models/Track';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
