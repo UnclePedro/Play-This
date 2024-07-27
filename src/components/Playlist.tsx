@@ -1,17 +1,18 @@
+import { useState } from 'react';
 import Tracklist from './Tracklist';
+import { triggerSavePlaylist } from '../util/SavePlaylist';
+import { Track } from '../models/Track';
 
-const Playlist = (props: {
-  onAdd: any;
-  onRemove: any;
-  onSave: React.MouseEventHandler<HTMLButtonElement>;
-  playlistTracks: any;
-  onNameChange: any;
-  playlistName: string;
-}) => {
-  const handleNameChange = (event: any) => {
-    props.onNameChange(event.target.value);
-    // console.log(event.target.value);
-  };
+interface Props {
+  onAdd: (track: Track) => void;
+  onRemove: (track: Track) => void;
+  playlistTracks: Track[];
+}
+
+const Playlist = ({ onAdd, onRemove, playlistTracks }: Props) => {
+  const [playlistName, setPlaylistName] = useState('');
+
+  // Currently when playlistName changes, it's triggering the triggerSavePlaylist function
 
   return (
     <>
@@ -19,14 +20,16 @@ const Playlist = (props: {
         <div className="p-4 xl:my-8 text-white bg-pink-900 w-[600px] rounded-xl shadow-xl">
           <div className="flex flex-col">
             <input
-              onChange={handleNameChange}
+              onChange={(element) => {
+                setPlaylistName(element.target.value);
+              }}
               // defaultValue={'New Playlist'}
               placeholder="New Playlist"
               className="text-xl sm:text-2xl font-oxygen font-bold p-3 rounded-xl w-72 text-black mb-1"
             />
-            <Tracklist tracks={props.playlistTracks} isRemoval={true} onRemove={props.onRemove} onAdd={props.onAdd} />
+            <Tracklist tracks={playlistTracks} isRemoval={true} onRemove={onRemove} onAdd={onAdd} />
             <button
-              onClick={props.onSave}
+              onClick={() => triggerSavePlaylist(playlistTracks, playlistName)}
               className="flex w-40 justify-center font-bold my-2 p-4 bg-pink-700 hover:bg-violet-600 rounded-xl shadow-lg transition-all duration-300 "
             >
               Save to Spotify
