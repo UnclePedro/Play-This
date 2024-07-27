@@ -3,8 +3,8 @@ import Banner from './components/Banner';
 import Playlist from './components/Playlist';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
-import { authorize, getToken } from './util/Authorize';
-import { search } from './util/Search';
+import { authorize, getToken } from './utils/authorize';
+import { search } from './utils/search';
 import { Track } from './models/Track';
 
 function App() {
