@@ -1,28 +1,23 @@
-const Track = (props: {
+import { Track } from '../models/Track';
+
+interface Props {
   isRemoval: boolean;
-  onRemove: React.MouseEventHandler<HTMLButtonElement>;
-  onAdd: React.MouseEventHandler<HTMLButtonElement>;
-  track: any;
-}) => {
-  // console.log('Track:', props.track);
-  const addTrack = () => {
-    props.onAdd(props.track);
-  };
+  onRemove: (track: Track) => void;
+  onAdd: (track: Track) => void;
+  track: Track;
+}
 
-  const removeTrack = () => {
-    props.onRemove(props.track);
-  };
-
+const TrackTile = ({ isRemoval, onRemove, onAdd, track }: Props) => {
   const renderAction = () => {
-    if (props.isRemoval) {
+    if (isRemoval) {
       return (
-        <button onClick={removeTrack} className="font-bold text-xl bg-white px-2 text-pink-700 rounded xl">
+        <button onClick={() => onRemove(track)} className="font-bold text-xl bg-white px-2 text-pink-700 rounded xl">
           -
         </button>
       );
     }
     return (
-      <button onClick={addTrack} className="font-bold text-xl bg-white px-2 text-pink-700 rounded xl">
+      <button onClick={() => onAdd(track)} className="font-bold text-xl bg-white px-2 text-pink-700 rounded xl">
         +
       </button>
     );
@@ -33,13 +28,13 @@ const Track = (props: {
       <div className="flex justify-center items-center ">
         <div className="w-11/12 sm:w-[500px] bg-pink-700 flex rounded-xl shadow-lg p-2 my-1">
           <div className="flex items-center font-bold px-2 w-1/3">
-            {props.track.name.length < 25 ? props.track.name : props.track.name.substring(0, 25) + '...'}
+            {track.name.length < 25 ? track.name : track.name.substring(0, 25) + '...'}
           </div>
           <div className="flex items-center px-2 w-1/3">
-            {props.track.artist.length < 25 ? props.track.artist : props.track.artist.substring(0, 25) + '...'}
+            {track.artist.length < 25 ? track.artist : track.artist.substring(0, 25) + '...'}
           </div>
           <div className="flex items-center px-2 w-1/3">
-            {props.track.album.length < 25 ? props.track.album : props.track.album.substring(0, 25) + '...'}
+            {track.album.length < 25 ? track.album : track.album.substring(0, 25) + '...'}
           </div>
 
           <div className="p-4">{renderAction()}</div>
@@ -49,4 +44,4 @@ const Track = (props: {
   );
 };
 
-export default Track;
+export default TrackTile;
