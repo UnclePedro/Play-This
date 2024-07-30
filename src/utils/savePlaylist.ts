@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Track } from '../models/Track';
 
 export const savePlaylist = async (playlistName: string, trackURIs: string[]) => {
