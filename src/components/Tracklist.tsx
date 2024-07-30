@@ -1,17 +1,18 @@
+import { Track } from '../models/Track';
 import TrackTile from './TrackTile';
 
-const Tracklist = (props: { tracks: any; onAdd: any; onRemove: any; isRemoval: boolean }) => {
-  console.log('Tracklist:', props.tracks);
+interface Props {
+  tracks: Track[];
+  onAdd: (track: Track) => void;
+  onRemove: (track: Track) => void;
+  isRemoval: boolean;
+}
+
+const Tracklist = ({ tracks, onAdd, onRemove, isRemoval }: Props) => {
   return (
     <>
-      {props.tracks.map((track: any) => (
-        <TrackTile
-          track={track}
-          key={track.id}
-          onAdd={props.onAdd}
-          isRemoval={props.isRemoval}
-          onRemove={props.onRemove}
-        />
+      {tracks.map((track: any) => (
+        <TrackTile track={track} key={track.id} onAdd={onAdd} isRemoval={isRemoval} onRemove={onRemove} />
       ))}
     </>
   );
