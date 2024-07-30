@@ -12,8 +12,6 @@ interface Props {
 const Playlist = ({ onAdd, onRemove, playlistTracks }: Props) => {
   const [playlistName, setPlaylistName] = useState('');
 
-  // Currently when playlistName changes, it's triggering the triggerSavePlaylist function
-
   return (
     <>
       <div className="flex justify-center m-4">
@@ -23,7 +21,6 @@ const Playlist = ({ onAdd, onRemove, playlistTracks }: Props) => {
               onChange={(element) => {
                 setPlaylistName(element.target.value);
               }}
-              // defaultValue={'New Playlist'}
               placeholder="New Playlist"
               className="text-xl sm:text-2xl font-oxygen font-bold p-3 rounded-xl w-72 text-black mb-1"
             />
