@@ -1,3 +1,5 @@
+import { Track } from '../models/Track';
+
 export const search = async (term: string) => {
   const accessToken = sessionStorage.getItem('access_token');
   console.log(`Your access token is: ${accessToken}`);
@@ -9,12 +11,11 @@ export const search = async (term: string) => {
   const jsonResponse = await response.json();
 
   if (jsonResponse) {
-    // console.log(jsonResponse);
     const results = jsonResponse.tracks.items.map(
-      (track: { id: string; name: string; artists: any; album: any; uri: string }) => ({
+      (track: { id: string; name: string; artist: Track[]; album: Track; uri: string }) => ({
         id: track.id,
         name: track.name,
-        artist: track.artists[0].name,
+        artist: track.artist[0].name,
         album: track.album.name,
         uri: track.uri,
       }),

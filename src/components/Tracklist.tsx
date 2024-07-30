@@ -11,7 +11,7 @@ interface Props {
 const Tracklist = ({ tracks, onAdd, onRemove, isRemoval }: Props) => {
   return (
     <>
-      {tracks.map((track: any) => (
+      {tracks.map((track: Track) => (
         <TrackTile track={track} key={track.id} onAdd={onAdd} isRemoval={isRemoval} onRemove={onRemove} />
       ))}
     </>

@@ -8,14 +8,13 @@ import { search } from './utils/search';
 import { Track } from './models/Track';
 
 function App() {
-  const [searchResults, setSearchResults] = useState([]);
-
   // Authorization
   const [codeVerifier, setCodeVerifier] = useState('');
   useEffect(() => {
     setCodeVerifier(sessionStorage.getItem('code_verifier') || '');
   }, []);
 
+  const [searchResults, setSearchResults] = useState([]);
   const searchTrigger = async (term: string) => {
     await getToken();
     search(term).then((result) => {
