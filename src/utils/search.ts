@@ -1,5 +1,13 @@
 import { Track } from '../models/Track';
 
+interface SpotifyTrack {
+  id: string;
+  name: string;
+  artists: { name: string }[];
+  album: { name: string };
+  uri: string;
+}
+
 export const search = async (term: string) => {
   const accessToken = sessionStorage.getItem('access_token');
   console.log(`Your access token is: ${accessToken}`);
@@ -12,10 +20,11 @@ export const search = async (term: string) => {
 
   if (jsonResponse) {
     const results = jsonResponse.tracks.items.map(
-      (track: { id: string; name: string; artist: Track[]; album: Track; uri: string }) => ({
+      // The below destructuring is typing the track objects as Spotify tracks
+      (track: SpotifyTrack) => ({
         id: track.id,
         name: track.name,
-        artist: track.artist[0].name,
+        artist: track.artists[0].name,
         album: track.album.name,
         uri: track.uri,
       }),
