@@ -1,5 +1,3 @@
-import { Track } from '../models/Track';
-
 interface SpotifyTrack {
   id: string;
   name: string;

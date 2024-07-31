@@ -24,7 +24,6 @@ function App() {
   };
 
   const [playlistTracks, setPlaylistTracks] = useState<Track[]>([]);
-
   const addTrack = (track: Track) => {
     if (playlistTracks.some((savedTrack) => savedTrack.id === track.id)) return;
     setPlaylistTracks((prevPlaylistTracks) => [...prevPlaylistTracks, track]);

@@ -16,7 +16,6 @@ const SearchBar = ({ onSearch }: Props) => {
               onChange={(element) => {
                 setTerm(element.target.value);
               }}
-              onKeyUp={() => onSearch(term)}
               className="border-2 rounded-xl m-4 p-3 text-center"
               placeholder="Search..."
             />
