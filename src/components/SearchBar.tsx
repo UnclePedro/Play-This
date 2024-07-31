@@ -25,7 +25,6 @@ const SearchBar = (props: { onSearch: any }) => {
           <label>
             <input
               onChange={handleTermChange}
-              onKeyUp={passTerm}
               className="border-2 rounded-xl m-4 p-3 text-center"
               placeholder="Search..."
             ></input>
