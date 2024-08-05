@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Banner from './components/Banner';
 import Playlist from './components/Playlist';
 import SearchBar from './components/SearchBar';
@@ -8,13 +8,10 @@ import { search } from './utils/search';
 import { Track } from './models/Track';
 
 function App() {
-  const [codeVerifier, setCodeVerifier] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [playlistTracks, setPlaylistTracks] = useState<Track[]>([]);
 
-  useEffect(() => {
-    setCodeVerifier(sessionStorage.getItem('code_verifier') || '');
-  }, []);
+  const codeVerifier = sessionStorage.getItem('code_verifier') || '';
 
   const addTrack = (track: Track) => {
     if (playlistTracks.some((savedTrack) => savedTrack.id === track.id)) return;
