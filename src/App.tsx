@@ -13,6 +13,7 @@ function App() {
 
   const codeVerifier = sessionStorage.getItem('code_verifier') || '';
 
+  // Need to refactor addTrack and removeTrack into their own helpers
   const addTrack = (track: Track) => {
     if (playlistTracks.some((savedTrack) => savedTrack.id === track.id)) return;
     setPlaylistTracks((prevPlaylistTracks) => [...prevPlaylistTracks, track]);

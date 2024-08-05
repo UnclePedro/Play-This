@@ -51,6 +51,7 @@ export const savePlaylist = async (playlistName: string, trackURIs: string[]) =>
 
 // function to map a trackURI to each track in the playlistTracks array when Save Playlist button is clicked, to give Spotify the data to add tracks to playlist
 // Then, clear the playlist name and playlist tracks
+// Might be able to refactor into savePlaylist function
 export const triggerSavePlaylist = (playlistTracks: Track[], playlistName: string) => {
   const trackURIs = playlistTracks.map((track) => track.uri);
   savePlaylist(playlistName, trackURIs).then(() => {
