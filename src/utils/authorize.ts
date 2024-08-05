@@ -1,6 +1,6 @@
 const SPOTIFY_CLIENT_ID = '17b12d160569489584b96ea99cc989cb';
-const redirectUri = 'http://localhost:5173/auth/callback';
-// 'https://play-this-app.vercel.app'
+const redirectUri = 'https://play-this.peterforsyth.dev';
+// 'https://play-this.peterforsyth.dev'
 // 'http://localhost:5173/auth/callback'
 
 function generateRandomString(length: number) {

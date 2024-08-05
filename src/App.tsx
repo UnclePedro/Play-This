@@ -28,7 +28,7 @@ function App() {
       <Banner />
       {codeVerifier && window.location.href.includes('?code=') ? (
         <>
-          <SearchBar onSearch={(term) => search(term).then(setSearchResults)} />
+          <SearchBar onSearch={(term: string) => search(term).then(setSearchResults)} />
           <div className="flex flex-col xl:flex-row justify-center">
             <SearchResults searchResults={searchResults} onAdd={addTrack} onRemove={removeTrack} />
             <Playlist playlistTracks={playlistTracks} onAdd={addTrack} onRemove={removeTrack} />
