@@ -3,27 +3,19 @@ import Banner from './components/Banner';
 import Playlist from './components/Playlist';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
-import { authorize, getToken } from './utils/authorize';
+import { authorize } from './utils/authorize';
 import { search } from './utils/search';
 import { Track } from './models/Track';
 
 function App() {
-  // Authorization
   const [codeVerifier, setCodeVerifier] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [playlistTracks, setPlaylistTracks] = useState<Track[]>([]);
+
   useEffect(() => {
     setCodeVerifier(sessionStorage.getItem('code_verifier') || '');
   }, []);
 
-  const [searchResults, setSearchResults] = useState([]);
-  const searchTrigger = async (term: string) => {
-    await getToken();
-    search(term).then((result) => {
-      setSearchResults(result);
-      console.log(`Your search results are ${result}`);
-    });
-  };
-
-  const [playlistTracks, setPlaylistTracks] = useState<Track[]>([]);
   const addTrack = (track: Track) => {
     if (playlistTracks.some((savedTrack) => savedTrack.id === track.id)) return;
     setPlaylistTracks((prevPlaylistTracks) => [...prevPlaylistTracks, track]);
@@ -38,7 +30,7 @@ function App() {
       <Banner />
       {codeVerifier && window.location.href.includes('?code=') ? (
         <>
-          <SearchBar onSearch={searchTrigger} />
+          <SearchBar onSearch={(term) => search(term).then(setSearchResults)} />
           <div className="flex flex-col xl:flex-row justify-center">
             <SearchResults searchResults={searchResults} onAdd={addTrack} onRemove={removeTrack} />
             <Playlist playlistTracks={playlistTracks} onAdd={addTrack} onRemove={removeTrack} />

@@ -1,3 +1,5 @@
+import { getToken } from './authorize';
+
 interface SpotifyTrack {
   id: string;
   name: string;
@@ -7,6 +9,7 @@ interface SpotifyTrack {
 }
 
 export const search = async (term: string) => {
+  getToken();
   const accessToken = sessionStorage.getItem('access_token');
   console.log(`Your access token is: ${accessToken}`);
 

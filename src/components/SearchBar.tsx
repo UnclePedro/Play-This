@@ -5,7 +5,7 @@ interface Props {
 }
 
 const SearchBar = ({ onSearch }: Props) => {
-  const [term, setTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
   return (
     <>
@@ -14,13 +14,13 @@ const SearchBar = ({ onSearch }: Props) => {
           <label>
             <input
               onChange={(element) => {
-                setTerm(element.target.value);
+                setSearchTerm(element.target.value);
               }}
               className="border-2 rounded-xl m-4 p-3 text-center"
               placeholder="Search..."
             />
           </label>
-          <button onClick={() => onSearch(term)} className="text-white py-6 px-6 font-bold text-3xl">
+          <button onClick={() => onSearch(searchTerm)} className="text-white py-6 px-6 font-bold text-3xl">
             🔍
           </button>
         </div>
