@@ -1,5 +1,6 @@
 const SPOTIFY_CLIENT_ID = '17b12d160569489584b96ea99cc989cb';
-const redirectUri = 'https://play-this-app.vercel.app';
+const redirectUri = 'http://localhost:5173/auth/callback';
+// 'https://play-this-app.vercel.app'
 // 'http://localhost:5173/auth/callback'
 
 function generateRandomString(length: number) {
@@ -80,7 +81,7 @@ export const getToken = async () => {
 
 export const refreshSpotifyToken = async (refresh_token: string) => {
   const body = new URLSearchParams({
-    grant_type: 'refresh_token' || '',
+    grant_type: 'refresh_token',
     refresh_token: refresh_token,
     client_id: SPOTIFY_CLIENT_ID || '',
   });

@@ -1,22 +1,11 @@
 import { useState } from 'react';
 
-const SearchBar = (props: { onSearch: any }) => {
-  const [term, setTerm] = useState('');
+interface Props {
+  onSearch: (term: string) => void;
+}
 
-  // passing input term from input to search function in Spotify
-  const passTerm = () => {
-    props.onSearch(term);
-  };
-
-  const handleTermChange = (event: any) => {
-    setTerm(event.target.value);
-  };
-
-  const handleEnterPress = (event: any) => {
-    if (event.key === 'Enter') {
-      passTerm();
-    }
-  };
+const SearchBar = ({ onSearch }: Props) => {
+  const [searchTerm, setSearchTerm] = useState('');
 
   return (
     <>
@@ -24,12 +13,14 @@ const SearchBar = (props: { onSearch: any }) => {
         <div className="flex justify-center items-center font-oxygen bg-pink-900 w-fit rounded-lg">
           <label>
             <input
-              onChange={handleTermChange}
+              onChange={(element) => {
+                setSearchTerm(element.target.value);
+              }}
               className="border-2 rounded-xl m-4 p-3 text-center"
               placeholder="Search..."
-            ></input>
+            />
           </label>
-          <button onClick={passTerm} className="text-white py-6 px-6 font-bold text-3xl">
+          <button onClick={() => onSearch(searchTerm)} className="text-white py-6 px-6 font-bold text-3xl">
             🔍
           </button>
         </div>
