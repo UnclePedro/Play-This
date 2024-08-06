@@ -28,7 +28,7 @@ function App() {
             />
             <Playlist
               playlistTracks={playlistTracks}
-              onAdd={(track: Track) => setPlaylistTracks((prev) => addTrack(track, prev))}
+              onAdd={(track: Track) => setPlaylistTracks((prevPlaylist) => addTrack(track, prevPlaylist))}
               onRemove={(track: Track) => setPlaylistTracks(removeTrack(track))}
             />
           </div>
