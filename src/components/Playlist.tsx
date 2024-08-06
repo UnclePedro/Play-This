@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Tracklist from './Tracklist';
-import { triggerSavePlaylist } from '../utils/savePlaylist';
+import { triggerSavePlaylist } from '../utils/playlistStorageHelper';
 import { Track } from '../models/Track';
 
 interface Props {

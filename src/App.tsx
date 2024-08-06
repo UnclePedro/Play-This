@@ -6,22 +6,13 @@ import SearchResults from './components/SearchResults';
 import { authorize } from './utils/authorize';
 import { search } from './utils/search';
 import { Track } from './models/Track';
+import { addTrack, removeTrack } from './utils/playlistStorageHelper';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [playlistTracks, setPlaylistTracks] = useState<Track[]>([]);
 
   const codeVerifier = sessionStorage.getItem('code_verifier') || '';
-
-  // Need to refactor addTrack and removeTrack into their own helpers
-  const addTrack = (track: Track) => {
-    if (playlistTracks.some((savedTrack) => savedTrack.id === track.id)) return;
-    setPlaylistTracks((prevPlaylistTracks) => [...prevPlaylistTracks, track]);
-  };
-
-  const removeTrack = (track: Track) => {
-    setPlaylistTracks((prevPlaylist) => prevPlaylist.filter((item) => item.name !== track.name));
-  };
 
   return (
     <div>
@@ -30,8 +21,16 @@ function App() {
         <>
           <SearchBar onSearch={(term: string) => search(term).then(setSearchResults)} />
           <div className="flex flex-col xl:flex-row justify-center">
-            <SearchResults searchResults={searchResults} onAdd={addTrack} onRemove={removeTrack} />
-            <Playlist playlistTracks={playlistTracks} onAdd={addTrack} onRemove={removeTrack} />
+            <SearchResults
+              searchResults={searchResults}
+              onAdd={(track: Track) => setPlaylistTracks((prevPlaylist) => addTrack(track, prevPlaylist))}
+              onRemove={(track: Track) => setPlaylistTracks(removeTrack(track))}
+            />
+            <Playlist
+              playlistTracks={playlistTracks}
+              onAdd={(track: Track) => setPlaylistTracks((prev) => addTrack(track, prev))}
+              onRemove={(track: Track) => setPlaylistTracks(removeTrack(track))}
+            />
           </div>
         </>
       ) : (

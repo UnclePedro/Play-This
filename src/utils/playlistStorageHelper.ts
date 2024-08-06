@@ -59,3 +59,12 @@ export const triggerSavePlaylist = (playlistTracks: Track[], playlistName: strin
     playlistTracks = [];
   });
 };
+
+export const addTrack = (track: Track, playlistTracks: Track[]) => {
+  if (playlistTracks.some((savedTrack) => savedTrack.id === track.id)) return playlistTracks;
+  return [...playlistTracks, track];
+};
+
+export const removeTrack = (track: Track) => {
+  return (prevPlaylist: Track[]) => prevPlaylist.filter((item) => item.name !== track.name);
+};
