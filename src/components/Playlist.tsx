@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Tracklist from './Tracklist';
-import { triggerSavePlaylist } from '../utils/playlistStorageHelper';
+import { savePlaylist } from '../utils/playlistStorageHelper';
 import { Track } from '../models/Track';
 
 interface Props {
@@ -26,7 +26,7 @@ const Playlist = ({ onAdd, onRemove, playlistTracks }: Props) => {
             />
             <Tracklist tracks={playlistTracks} isRemoval={true} onRemove={onRemove} onAdd={onAdd} />
             <button
-              onClick={() => triggerSavePlaylist(playlistTracks, playlistName)}
+              onClick={() => savePlaylist(playlistName, playlistTracks)}
               className="flex w-40 justify-center font-bold my-2 p-4 bg-pink-700 hover:bg-violet-600 rounded-xl shadow-lg transition-all duration-300 "
             >
               Save to Spotify

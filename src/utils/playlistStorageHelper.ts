@@ -1,6 +1,7 @@
 import { Track } from '../models/Track';
 
-export const savePlaylist = async (playlistName: string, trackURIs: string[]) => {
+export const savePlaylist = async (playlistName: string, playlistTracks: Track[]) => {
+  const trackURIs = playlistTracks.map((track) => track.uri);
   // Return if no tracks are added to playlist, to avoid creating empty playlists
   if (trackURIs.length === 0) {
     window.alert('Cannot create empty playlist, add some tracks.');
@@ -43,21 +44,13 @@ export const savePlaylist = async (playlistName: string, trackURIs: string[]) =>
   const addTracksJsonResponse = await addPlaylistTracks.json();
   console.log(addTracksJsonResponse.snapshot_id);
   if (addTracksJsonResponse.snapshot_id) {
+    // Reset playlist doesn't work currently...
+    playlistName = '';
+    playlistTracks = [];
     window.alert('Playlist saved!');
   } else {
     window.alert('Error saving playlist, please try again.');
   }
-};
-
-// function to map a trackURI to each track in the playlistTracks array when Save Playlist button is clicked, to give Spotify the data to add tracks to playlist
-// Then, clear the playlist name and playlist tracks
-// Might be able to refactor into savePlaylist function
-export const triggerSavePlaylist = (playlistTracks: Track[], playlistName: string) => {
-  const trackURIs = playlistTracks.map((track) => track.uri);
-  savePlaylist(playlistName, trackURIs).then(() => {
-    playlistName = '';
-    playlistTracks = [];
-  });
 };
 
 export const addTrack = (track: Track, playlistTracks: Track[]) => {
